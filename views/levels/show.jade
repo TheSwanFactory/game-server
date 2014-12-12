@@ -18,4 +18,6 @@ block content
       dd= level.game
       dt Based on Level
       dd= level.level
-    pre.source= JSON.stringify(level.sourceJSON, null, 4)
+      dt Source
+      dd
+        pre.source= JSON.stringify(level.sourceJSON, null, 4)

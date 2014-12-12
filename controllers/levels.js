@@ -29,7 +29,7 @@ var controller = {
       .then(function(level) {
         res.format({
           html: function() {
-            res.render('show', { level: level });
+            res.render('levels/show', { level: level });
           },
           json: function() {
             res.send(level);
