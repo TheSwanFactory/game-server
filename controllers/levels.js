@@ -45,6 +45,9 @@ var controller = {
         level.destroy().then(function() {
           res.send({success: true});
         });
+      })
+      .catch(function(err) {
+        res.send(err);
       });
   }
 };
