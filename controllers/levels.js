@@ -27,7 +27,14 @@ var controller = {
     Level
       .find(req.params.id)
       .then(function(level) {
-        res.render('show', { level: level });
+        res.format({
+          html: function() {
+            res.render('show', { level: level });
+          },
+          json: function() {
+            res.send(level);
+          }
+        });
       })
       .catch(function(err) {
         res.send(err);
