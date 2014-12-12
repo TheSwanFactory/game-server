@@ -13,13 +13,7 @@ module.exports = function(sequelize, DataTypes) {
         notEmpty: true
       }
     },
-    name: {
-      type:      DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: true
-      }
-    },
+    name:      DataTypes.STRING,
     ip:        DataTypes.STRING,
     userAgent: DataTypes.STRING,
     game:      DataTypes.STRING,
@@ -45,7 +39,7 @@ module.exports = function(sequelize, DataTypes) {
         return this.build({
           url:       url,
           source:    parsed.custom,
-          name:      custom.level_name,
+          name:      custom.level_name || '(no name)',
           ip:        req.ip,
           userAgent: req.headers['user-agent'],
           game:      parsed.game,
