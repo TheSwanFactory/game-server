@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+  h1= level.name
+
+  div.level
+    dl
+      dt Name
+      dd= level.name
+      dt URL
+      dd
+        a(href=level.url)= level.url
+      dt IP Address
+      dd= level.ip
+      dt User Agent
+      dd= level.userAgent
+      dt Based on Game
+      dd= level.game
+      dt Based on Level
+      dd= level.level
+    pre.source= JSON.stringify(level.sourceJSON, null, 4)
