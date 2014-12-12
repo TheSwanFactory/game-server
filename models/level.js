@@ -27,7 +27,7 @@ module.exports = function(sequelize, DataTypes) {
   },
   {
     getterMethods: {
-      sourceJSON: function() {
+      source: function() {
         try {
           return JSON.parse(this.getDataValue('source'));
         } catch(error) {
