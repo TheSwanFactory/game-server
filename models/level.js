@@ -30,7 +30,7 @@ module.exports = function(sequelize, DataTypes) {
       sourceJSON: function() {
         try {
           return JSON.parse(this.getDataValue('source'));
-        } catch {
+        } catch(error) {
           return null;
         }
       }
