@@ -26,6 +26,15 @@ module.exports = function(sequelize, DataTypes) {
     level:     DataTypes.STRING
   },
   {
+    getterMethods: {
+      sourceJSON: function() {
+        try {
+          return JSON.parse(this.getDataValue('source'));
+        } catch {
+          return null;
+        }
+      }
+    },
     classMethods: {
       buildFromUrl: function(url, req) {
         assert.notEqual(url.indexOf('?'), -1, 'URL must have parameters');
@@ -38,7 +47,9 @@ module.exports = function(sequelize, DataTypes) {
           source:    parsed.custom,
           name:      custom.level_name,
           ip:        req.ip,
-          userAgent: req.headers['user-agent']
+          userAgent: req.headers['user-agent'],
+          game:      parsed.game,
+          level:     parsed.level
         });
       }
     }
