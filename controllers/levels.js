@@ -22,8 +22,15 @@ var controller = {
 
   // POST /levels
   create: function(req, res) {
-    var level = models.Level.create(req.body);
-    res.send(level);
+    models.Level
+      .buildFromUrl(req.body.url)
+      .save()
+      .then(function(level) {
+        res.send(level);
+      }).catch(function(err) {
+        res.statusCode = 422;
+        res.send(err);
+      });
   }
 };
 
