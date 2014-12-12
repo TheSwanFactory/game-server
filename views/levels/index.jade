@@ -7,7 +7,5 @@ block content
   ul
     each level in levels
       li
-        = level.name
-        pre
-          = JSON.stringify(JSON.parse(level.source), null, 4)
+        a(href=level.url)= level.name
 

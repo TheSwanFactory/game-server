@@ -9,7 +9,7 @@ var controller = {
       res.format({
         html: function() {
           res.render('levels/index', {
-            title:  'Express',
+            title:  'Levels',
             levels: levels
           });
         },
