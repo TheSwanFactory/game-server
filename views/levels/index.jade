@@ -1,11 +1,12 @@
 extends ../layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  h1
+    | Hour of Node Levels
 
   ul
     each level in levels
       li
         a(href=level.url)= level.name
-
+        small
+          a(href='/levels/' + level.id) (more info)
