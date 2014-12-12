@@ -6,14 +6,20 @@ var assert      = require('assert');
 module.exports = function(sequelize, DataTypes) {
   var Level = sequelize.define("Level", {
     url:       DataTypes.STRING(2048),
-    source:    {
+    source: {
       type:      DataTypes.TEXT,
       allowNull: false,
       validate: {
         notEmpty: true
       }
     },
-    name:      DataTypes.STRING,
+    name: {
+      type:      DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true
+      }
+    },
     ip:        DataTypes.STRING,
     userAgent: DataTypes.STRING,
     game:      DataTypes.STRING,
@@ -21,16 +27,18 @@ module.exports = function(sequelize, DataTypes) {
   },
   {
     classMethods: {
-      buildFromUrl: function(url) {
-        var url;
-
+      buildFromUrl: function(url, req) {
         assert.notEqual(url.indexOf('?'), -1, 'URL must have parameters');
 
         var parsed = querystring.parse(url.split('?')[1]);
+        var custom = JSON.parse(parsed.custom);
 
         return this.build({
-          url:    url,
-          source: parsed.custom
+          url:       url,
+          source:    parsed.custom,
+          name:      custom.level_name,
+          ip:        req.ip,
+          userAgent: req.headers['user-agent']
         });
       }
     }

@@ -9,5 +9,5 @@ block content
       li
         = level.name
         pre
-          = level.source
+          = JSON.stringify(JSON.parse(level.source), null, 4)
 
