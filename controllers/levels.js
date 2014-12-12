@@ -41,9 +41,10 @@ var controller = {
     assert.ok(req.params.id, 'ID must be set');
     models.Level
       .find(req.params.id)
-      .destroy()
-      .then(function() {
-        res.send({success: true});
+      .then(function(level) {
+        level.destroy().then(function() {
+          res.send({success: true});
+        });
       });
   }
 };
